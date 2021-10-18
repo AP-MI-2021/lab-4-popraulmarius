@@ -45,6 +45,9 @@ def medie_aritmetica(lst,n):
 
 def test_medie_aritmetica():
     assert medie_aritmetica([10, -3, 25, -1, 3, 25, 18],10)=="DA"
+    assert medie_aritmetica([10,10,10],10)=="NU"
+    assert medie_aritmetica([10,11],10)=="DA"
+    assert medie_aritmetica([9,10],10)=="NU"
 
 def elimina_nr_prime(lst):
     #elimina numerele prime din lista
@@ -58,6 +61,9 @@ def elimina_nr_prime(lst):
 
 def test_elimina_nr_prime():
     assert elimina_nr_prime([8, 19, 17, 25])==[8, 25]
+    assert elimina_nr_prime([1,0,2,17,100,56,13])==[1,0,100,56]
+    assert elimina_nr_prime([2,13,17])==[]
+    assert elimina_nr_prime([-7,7,0,2])==[-7,0]
 
 
 def adaugare_div_proprii(lst):
@@ -71,6 +77,8 @@ def adaugare_div_proprii(lst):
 
 def test_adaugare_div_proprii():
     assert adaugare_div_proprii([19, 5, 24, 12, 9])==[19, 0, 5, 0, 24, 6, 12, 4, 9, 1]
+    assert adaugare_div_proprii([2,0,4])==[2,0,0,0,4,1]
+    assert adaugare_div_proprii([5,1,10])==[5,0,1,0,10,2]
 
 
 def afisare_lista_tuplu(lst):
@@ -89,23 +97,31 @@ def afisare_lista_tuplu(lst):
 
 def test_afisare_lista_tuplu():
     assert afisare_lista_tuplu([25,13,26,13])==[(25, 0, 1), (13, 1, 2), (26, 2, 1), (13, 3, 2)]
+    assert afisare_lista_tuplu([10,10])==[(10,0,2),(10,1,2)]
+    assert afisare_lista_tuplu([10,15,10])==[(10,0,2),(15,1,1),(10,2,2)]
 
 
 def main():
+    ok=1
     while True:
-        m=input("Da lista de numere care doresti sa fie prelucrata, numerele trebuie sa fie separate prin spatiu:")
-        lst2=(m.split(" "))
-        map_object=map(int,lst2)
-        lst=list(map_object)
-        print(lst)
-
-
+        if ok:
+            m=input("Da lista de numere care doresti sa fie prelucrata, numerele trebuie sa fie separate prin spatiu:")
+            lst2=(m.split(" "))
+            map_object=map(int,lst2)
+            lst=list(map_object)
+            ok=0
+        print ("0.Citeste alte numere.")
         print("1.Afiseaza lista dupa eliminarea numerelor prime.")
         print("2.Se va determina daca media aritmetica a numerelor din lista este mai mare sau nu decat un numar dat.")
         print("3.Adauga dupa fiecare element numarul de dizivori proprii ai acestuia.")
         print("4.Returneaza o lista de tupluri care contine elementul, indicele elementului si numarul de aparitii ale acestuia.")
         print("5.Iesire program.")
         optiune = input("Alege optiunea")
+        if optiune=='0':
+            m = input( "Da lista de numere care doresti sa fie prelucrata, numerele trebuie sa fie separate prin spatiu:")
+            lst2 = (m.split(" "))
+            map_object = map(int, lst2)
+            lst = list(map_object)
         if optiune=='1':
             test_prim()
             test_elimina_nr_prime()
